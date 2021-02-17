@@ -9,13 +9,12 @@ import org.junit.Test;
 import java.util.*;
 
 public class ApiTest {
-
     private Set<String> words;
 
     @Before
     public void before() {
         // 读取文件，103976个英语单词库.txt
-        words = FileUtil.readWordList("E:/itstack/git/github.com/interview/doc/103976个英语单词库.txt");
+        words = FileUtil.readWordList("E:\\Rolan对应文件\\git\\interview\\interview-03\\103976个英语单词库.txt");
     }
 
     @Test
@@ -23,9 +22,9 @@ public class ApiTest {
         Map<Integer, Integer> map = new HashMap<>(16);
         for (String word : words) {
             // 使用扰动函数
-            int idx = Disturb.disturbHashIdx(word, 128);
+//            int idx = Disturb.disturbHashIdx(word, 128);
             // 不使用扰动函数
-            // int idx = Disturb.hashIdx(word, 128);
+             int idx = Disturb.hashIdx(word, 128);
             if (map.containsKey(idx)) {
                 Integer integer = map.get(idx);
                 map.put(idx, ++integer);
@@ -66,28 +65,37 @@ public class ApiTest {
 
     @Test
     public void test_hashMap() {
-        List<String> list = new ArrayList<>();
-        list.add("jlkk");
-        list.add("lopi");
-        list.add("jmdw");
-        list.add("e4we");
-        list.add("io98");
-        list.add("nmhg");
-        list.add("vfg6");
-        list.add("gfrt");
-        list.add("alpo");
-        list.add("vfbh");
-        list.add("bnhj");
-        list.add("zuio");
-        list.add("iu8e");
-        list.add("yhjk");
-        list.add("plop");
-        list.add("dd0p");
+//        List<String> list = new ArrayList<>();
+//        list.add("jlkk");
+//        list.add("lopi");
+//        list.add("jmdw");
+//        list.add("e4we");
+//        list.add("io98");
+//        list.add("nmhg");
+//        list.add("vfg6");
+//        list.add("gfrt");
+//        list.add("alpo");
+//        list.add("vfbh");
+//        list.add("bnhj");
+//        list.add("zuio");
+//        list.add("iu8e");
+//        list.add("yhjk");
+//        list.add("plop");
+//        list.add("dd0p");
+//
+//        for (String key : list) {
+//            int hash = key.hashCode() ^ (key.hashCode() >>> 16);
+//            System.out.println("字符串：" + key + " \tIdx(16)：" + ((16 - 1) & hash) + " \tBit值：" + Integer.toBinaryString(hash) + " - " + Integer.toBinaryString(hash & 16) + " \t\tIdx(32)：" + ((32 - 1) & hash));
+//            System.out.println(Integer.toBinaryString(key.hashCode()) +" "+ Integer.toBinaryString(hash) + " " + Integer.toBinaryString((32 - 1) & hash));
+//        }
 
-        for (String key : list) {
+        ArrayList<Integer> list2 = new ArrayList<>();
+        for (int i = 0; i <= 64; i++) {
+            list2.add(i);
+        }
+        for (Integer key : list2) {
             int hash = key.hashCode() ^ (key.hashCode() >>> 16);
-            System.out.println("字符串：" + key + " \tIdx(16)：" + ((16 - 1) & hash) + " \tBit值：" + Integer.toBinaryString(hash) + " - " + Integer.toBinaryString(hash & 16) + " \t\tIdx(32)：" + ((32 - 1) & hash));
-            System.out.println(Integer.toBinaryString(key.hashCode()) +" "+ Integer.toBinaryString(hash) + " " + Integer.toBinaryString((32 - 1) & hash));
+            System.out.println("元素：" + key + "    默认容量16，索引为：" + ((16 - 1) & hash) + "    二进制：" + Integer.toBinaryString(hash) + "    下一次扩容是否迁移 " + Integer.toBinaryString(hash & 16));
         }
     }
 

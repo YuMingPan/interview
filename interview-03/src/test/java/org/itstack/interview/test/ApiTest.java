@@ -6,7 +6,9 @@ import org.itstack.interview.RateInfo;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class ApiTest {
 
@@ -16,7 +18,7 @@ public class ApiTest {
     public void before() {
         "abc".hashCode();
         // 读取文件，103976个英语单词库.txt
-        words = FileUtil.readWordList("E:/itstack/git/github.com/interview/interview-01/103976个英语单词库.txt");
+        words = FileUtil.readWordList("E:\\Rolan对应文件\\git\\interview\\interview-03\\103976个英语单词库.txt");
     }
 
     @Test
@@ -35,6 +37,16 @@ public class ApiTest {
         System.out.println(HashCode.hashArea(words, 31).values());
         System.out.println(HashCode.hashArea(words, 32).values());
         System.out.println(HashCode.hashArea(words, 199).values());
+    }
+
+    @Test
+    public void testStream() {
+        List<Integer> hashCodeList = new ArrayList<>();
+        for (String str : words) {
+            Integer hashCode = HashCode.hashCode(str, 2);
+            hashCodeList.add(hashCode);
+        }
+        System.out.println(0x80000000);
     }
 
 }
